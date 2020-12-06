@@ -109,29 +109,7 @@ glimpse(orderlines_tbl)
 ## $ product.id  <dbl> 2681, 2411, 2629, 2137, 2367, 1973, 2422,…
 ## $ quantity    <dbl> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1,…
 
-# by automatically detecting a common column, if any ...
-left_join(orderlines_tbl, bikes_tbl)
-## Error: `by` must be supplied when `x` and `y` have no common variables.
 
-# If the data has no common column name, you can provide each column name in the "by" argument. For example, by = c("a" = "b") will match x.a to y.b. The order of the columns has to match the order of the tibbles).
-left_join(orderlines_tbl, bikes_tbl, by = c("product.id" = "bike.id"))
-## # A tibble: 15,644 x 15
-##    ...1  order.id order.line order.date          customer.id
-##    <chr>    <dbl>      <dbl> <dttm>                    <dbl>
-##  1 1            1          1 2015-01-07 00:00:00           2
-##  2 2            1          2 2015-01-07 00:00:00           2
-##  3 3            2          1 2015-01-10 00:00:00          10
-##  4 4            2          2 2015-01-10 00:00:00          10
-##  5 5            3          1 2015-01-10 00:00:00           6
-##  6 6            3          2 2015-01-10 00:00:00           6
-##  7 7            3          3 2015-01-10 00:00:00           6
-##  8 8            3          4 2015-01-10 00:00:00           6
-##  9 9            3          5 2015-01-10 00:00:00           6
-## 10 10           4          1 2015-01-11 00:00:00          22
-## # … with 15,634 more rows, and 10 more variables:
-## #   product.id <dbl>, quantity <dbl>, model <chr>,
-## #   model.year <dbl>, frame.material <chr>, weight <dbl>,
-## #   price <dbl>, category <chr>, gender <chr>, url <chr>
 
 # Chaining commands with the pipe and assigning it to order_items_joined_tbl
 bike_orderlines_joined_tbl <- orderlines_tbl %>%
@@ -162,7 +140,6 @@ bike_orderlines_joined_tbl %>% glimpse()
 ## $ lat            <dbl> 53.57532, 53.57532, 53.07379, 53.07…
 ## $ lng            <dbl> 10.015340, 10.015340, 8.826754, 8.8…
 
-bike_orderlines_joined_tbl$category
 
 bike_orderlines_joined_tbl %>% 
   select(category) %>%
